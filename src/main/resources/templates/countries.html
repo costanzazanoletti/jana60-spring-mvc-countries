@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>	
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Countries</title>
+	</head>
+	<body>
+		<h1>Countries</h1>
+		<ul>
+			<li th:each="c : ${countryList}" th:text="${c.getName()}"></li>
+		</ul>
+	</body>
+</html>
