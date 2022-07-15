@@ -2,6 +2,7 @@ package jana60.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +27,8 @@ public class Country {
   @Column(name = "country_code3")
   private String countryCode3;
 
+  @Column(name = "country_code2")
+  private String countryCode2;
 
   // getter e setter
 
@@ -69,6 +72,26 @@ public class Country {
     this.countryCode3 = countryCode3;
   }
 
+  public String getCountryCode2() {
+    return countryCode2;
+  }
+
+  public void setCountryCode2(String countryCode2) {
+    this.countryCode2 = countryCode2;
+  }
+
+  public void setCountryId(Integer countryId) {
+    this.countryId = countryId;
+  }
+
+  // altri metodi public
+  public String getFormattedNationalDay() {
+    if (nationalDay == null) {
+      return "n.d.";
+    } else {
+      return nationalDay.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+    }
+  }
 
 
 }

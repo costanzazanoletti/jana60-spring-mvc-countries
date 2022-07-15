@@ -1,12 +1,34 @@
-<!DOCTYPE HTML>	
-<html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>Countries</title>
-	</head>
-	<body>
-		<h1>Countries</h1>
-		<ul>
-			<li th:each="c : ${countryList}" th:text="${c.getName()}"></li>
-		</ul>
-	</body>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <th:block th:replace="fragments :: risorse-head"></th:block>
+    <title>Countries</title> 
+  </head>
+  <body>
+    <div class="container">
+    	<h1>Countries</h1>
+		<hr/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Area</th>
+					<th>National Day</th>
+					<th>Code</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="c : ${countryList}">
+					<td th:text="${c.name}"></td>
+					<td th:text="${c.area}"></td>
+					<td th:text="${#temporals.format(c.nationalDay, 'dd-MMMM-yyyy')}"></td>
+					<!--  td th:text="${c.getFormattedNationalDay()}"></td-->
+					<td th:text="${c.countryCode3}"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
 </html>
