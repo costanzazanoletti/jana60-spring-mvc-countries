@@ -19,6 +19,7 @@ public class CountryController {
   @GetMapping
   public String countries(Model model) {
     List<Country> countryList = (List<Country>) repo.findAll();
+    // List<Country> countryList = new ArrayList<Country>();
     // System.out.println(countryList);
     model.addAttribute("countryList", countryList);
     return "countries";

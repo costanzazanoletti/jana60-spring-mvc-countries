@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <th:block th:replace="fragments :: risorse-head"></th:block>
+    <title>Regions</title> 
+  </head>
+  <body>
+  <nav th:replace="fragments :: navbar('region')"></nav>
+    <div class="container">
+    	<h1>Regions of the world</h1>
+		<hr/>
+		<!-- nel model ci deve essere regionList -->
+		<ul th:if="${regionList.size() > 0}">
+			<li th:each="r : ${regionList}">
+				<a th:href="@{|/region/${r.regionId}|}" th:text="${r.name}">dsfdgdfggf</a>
+			</li>
+		</ul>
+		<div th:unless="${regionList.size() > 0}" class="alert alert-info">There are no regions</div>
+		
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

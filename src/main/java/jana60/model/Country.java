@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +31,12 @@ public class Country {
 
   @Column(name = "country_code2")
   private String countryCode2;
+
+  @ManyToOne
+  @JoinColumn(name = "region_id")
+  private Region region;
+
+
 
   // getter e setter
 
@@ -84,6 +92,16 @@ public class Country {
     this.countryId = countryId;
   }
 
+
+
+  public Region getRegion() {
+    return region;
+  }
+
+  public void setRegion(Region region) {
+    this.region = region;
+  }
+
   // altri metodi public
   public String getFormattedNationalDay() {
     if (nationalDay == null) {
@@ -91,6 +109,10 @@ public class Country {
     } else {
       return nationalDay.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
     }
+  }
+
+  public String getRegionName() {
+    return this.region.getName();
   }
 
 

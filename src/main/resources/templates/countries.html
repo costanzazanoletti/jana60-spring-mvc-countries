@@ -5,13 +5,16 @@
     <title>Countries</title> 
   </head>
   <body>
+  	<nav th:replace="fragments :: navbar('country')"></nav>
     <div class="container">
     	<h1>Countries</h1>
 		<hr/>
-		<table class="table">
+		<!-- da mostrare se la lista di country è piena -->
+		<table class="table" th:if="${countryList.size() > 0}">
 			<thead>
 				<tr>
 					<th>Name</th>
+					<th>Region</th>
 					<th>Area</th>
 					<th>National Day</th>
 					<th>Code</th>
@@ -20,6 +23,8 @@
 			<tbody>
 				<tr th:each="c : ${countryList}">
 					<td th:text="${c.name}"></td>
+					<!-- td th:text="${c.getRegionName()}"></td -->
+					<td th:text="${c.region.name}"></td>
 					<td th:text="${c.area}"></td>
 					<td th:text="${#temporals.format(c.nationalDay, 'dd-MMMM-yyyy')}"></td>
 					<!--  td th:text="${c.getFormattedNationalDay()}"></td-->
@@ -27,6 +32,8 @@
 				</tr>
 			</tbody>
 		</table>
+		<!-- da mostrare se la lista di country è vuota -->
+		<div class="alert alert-info" role="alert" th:unless="${countryList.size() > 0}">There are no countries to show</div>
 		
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
