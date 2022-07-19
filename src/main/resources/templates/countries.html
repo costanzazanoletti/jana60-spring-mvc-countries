@@ -18,6 +18,7 @@
 					<th>Area</th>
 					<th>National Day</th>
 					<th>Code</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,7 +29,12 @@
 					<td th:text="${c.area}"></td>
 					<td th:text="${#temporals.format(c.nationalDay, 'dd-MMMM-yyyy')}"></td>
 					<!--  td th:text="${c.getFormattedNationalDay()}"></td-->
-					<td th:text="${c.countryCode3}"></td>
+					<td >
+						<a th:href="@{|/detail/${c.countryId}|}" th:text="${c.countryCode3}"></a>
+					</td>
+					<td>
+						<a th:href="@{|/detail/${c.countryId}|}" class="btn btn-primary">Detail</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

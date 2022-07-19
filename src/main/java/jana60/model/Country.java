@@ -3,12 +3,15 @@ package jana60.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -36,7 +39,10 @@ public class Country {
   @JoinColumn(name = "region_id")
   private Region region;
 
-
+  @ManyToMany
+  @JoinTable(name = "country_languages", joinColumns = {@JoinColumn(name = "country_id")},
+      inverseJoinColumns = {@JoinColumn(name = "language_id")})
+  private List<Language> languages;
 
   // getter e setter
 
@@ -93,6 +99,14 @@ public class Country {
   }
 
 
+
+  public List<Language> getLanguages() {
+    return languages;
+  }
+
+  public void setLanguages(List<Language> languages) {
+    this.languages = languages;
+  }
 
   public Region getRegion() {
     return region;
